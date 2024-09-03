@@ -20,7 +20,7 @@ file_path=$(dirname "$writefile")
 
 if [ ! -d "$file_path" ] ; then
 	mkdir -p "$file_path"
-	if[ $? -ne 0 ] ; then
+	if [ $? -ne 0 ] ; then
 		echo "Error: could not create file path"
 		exit 1
 	fi
