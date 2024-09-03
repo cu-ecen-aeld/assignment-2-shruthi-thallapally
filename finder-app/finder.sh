@@ -7,8 +7,7 @@
 #	https://superuser.com/questions/339522/counting-total-number-of-matches-with-grep-instead-of-just-how-many-lines-match
 
 #checking for 2 arguments and exiting with error if not present
-if [ $# -ne 2 ]
-then
+if [ $# -ne 2 ] ; then
 	echo "Two parameters are not specified"
 	exit 1
 fi
@@ -19,8 +18,7 @@ searchstr=$2
 
 #check if filesdir is present,exit with error if not
 
-if [ ! -d "$filesdir" ]
-then
+if [ ! -d "$filesdir" ] ; then
 	echo "$filesdir does not represent a directory"
 	exit 1
 fi
