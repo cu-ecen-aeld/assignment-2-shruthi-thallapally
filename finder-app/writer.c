@@ -21,6 +21,9 @@
  #include <errno.h>
  #include <string.h>
  #include <unistd.h>
+ #include <linux/stat.h>
+ #include <sys/stat.h>
+ #include <libgen.h>
 
  int main(int argc,char *argv[])
  {
@@ -30,7 +33,7 @@
     //Check if 3 arguments are not given
     if (argc != 3) {
         syslog(LOG_ERR, "Insufficient arguments. Usage: %s <filename> <string>", argv[0]);
-        printf("Insufficient arguments\n  Usage: %s <filename> <string>\n");
+        printf("Insufficient arguments\n  Usage: %s <filename> <string>\n", argv[0]);
         closelog();
         return 1;
     }
@@ -58,7 +61,7 @@
     FILE *file=fopen(writefile,"w");
     if(file==NULL)
     {
-        syslog(LOG_ERROR,"Error: %s opening the file: %s ",strerror(errno),writefile);
+        syslog(LOG_ERR,"Error: %s opening the file: %s ",strerror(errno),writefile);
         printf("Error opening the file\n");
         free(directory);
         closelog();
@@ -77,7 +80,7 @@
 
     syslog(LOG_DEBUG,"Writing %s to %s",writestr,writefile);
 
-    fclose();
+    fclose(writefile);
     free(directory);
     closelog();
     return 0;
