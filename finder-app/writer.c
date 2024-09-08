@@ -80,7 +80,7 @@
 
     syslog(LOG_DEBUG,"Writing %s to %s",writestr,writefile);
 
-    fclose(writefile);
+    fclose(file);
     free(directory);
     closelog();
     return 0;
