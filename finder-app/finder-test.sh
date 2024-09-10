@@ -5,6 +5,14 @@
 set -e
 set -u
 
+# Clean previous build artifacts
+echo "Removing old build artifacts"
+make clean
+
+# Compile the writer application natively
+echo "Compiling the writer application natively"
+make
+
 NUMFILES=10
 WRITESTR=AELD_IS_FUN
 WRITEDIR=/tmp/aeld-data
@@ -28,6 +36,8 @@ fi
 MATCHSTR="The number of files are ${NUMFILES} and the number of matching lines are ${NUMFILES}"
 
 echo "Writing ${NUMFILES} files containing string ${WRITESTR} to ${WRITEDIR}"
+
+#remove 
 
 rm -rf "${WRITEDIR}"
 
@@ -54,7 +64,7 @@ fi
 
 for i in $( seq 1 $NUMFILES)
 do
-	./writer.sh "$WRITEDIR/${username}$i.txt" "$WRITESTR"
+	./writer "$WRITEDIR/${username}$i.txt" "$WRITESTR"
 done
 
 OUTPUTSTRING=$(./finder.sh "$WRITEDIR" "$WRITESTR")
